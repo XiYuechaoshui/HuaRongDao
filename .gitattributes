@@ -1,0 +1,45 @@
+# ============================================================================
+#  行尾与编码规则
+#
+#  这个工程对换行符特别敏感, 两类脚本的规矩**正好相反**, 见 打包说明.md:
+#    · 打包exe.ps1  : PowerShell 5.1 按 GBK 读无 BOM 的中文注释会直接语法错误
+#                     -> 必须 UTF-8 with BOM + CRLF
+#    · 启动*.bat    : cmd.exe 按 ANSI 代码页读字节, BOM 或中文路径都会变乱码
+#                     -> 必须无 BOM + 纯 ASCII + CRLF
+#  所以这里把行尾钉死, 避免换台机器 clone 后被 autocrlf 改掉。
+# ============================================================================
+
+# 默认: 交给 git 正常处理, 检出时用平台默认行尾
+* text=auto
+
+# 明确需要 CRLF 的脚本 (Windows 专用)
+*.ps1   text eol=crlf
+*.psm1  text eol=crlf
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# 源码与文档: 仓库内统一 LF, 检出时不转换 (避免 diff 噪声)
+*.py    text eol=lf
+*.md    text eol=lf
+*.spec  text eol=lf
+*.txt   text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+
+# 二进制: 禁止任何行尾/编码处理
+*.ico   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.pt    binary
+*.pkl   binary
+*.npy   binary
+*.zip   binary
+*.exe   binary
+*.dll   binary
+
+# 不要在 diff 里显示生成文件的统计
+dist/**    -diff -merge
+build/**   -diff -merge
