@@ -1,10 +1,10 @@
 ﻿# 华容道 exe 打包脚本
-# 使用方法: 在 PowerShell 中运行 & d:\XIYueの奇妙冒险\华容道_打包\打包exe.ps1
+# 使用方法: 在 PowerShell 中运行 & d:\华容道\华容道_打包\打包exe.ps1
 #
 # 设计要点 (2026-09 修订):
 #   1. 源码同步是"非破坏性"的: 只复制打包目录**缺失**的文件, 已有文件一律不动。
-#      历史问题: 原脚本无条件从 d:\XIYueの奇妙冒险\华容道 覆盖 16 个文件, 而 d:\XIYueの奇妙冒险\华容道 里是旧版本,
-#      一跑打包就会把 d:\XIYueの奇妙冒险\华容道_打包 里更新过的源码全部回退 (实测有 7 个文件不同)。
+#      历史问题: 原脚本无条件从 d:\华容道\华容道 覆盖 16 个文件, 而 d:\华容道\华容道 里是旧版本,
+#      一跑打包就会把 d:\华容道\华容道_打包 里更新过的源码全部回退 (实测有 7 个文件不同)。
 #      确实想用源码目录的版本覆盖时, 加 -PullSource (或 -Force 全量覆盖)。
 #   2. 同步白名单按 *.py 全量枚举, 不再手工列举 (原白名单漏了
 #      导入器.py / 代码生成器.py / 布局编辑器.py)。
@@ -25,15 +25,15 @@
 #      而且没有 git/备份可恢复。要用源码目录的版本请显式加 -PullSource。
 
 param(
-    [switch]$Force,          # 强制用 d:\XIYueの奇妙冒险\华容道 的源码覆盖打包目录 (危险: 那个目录是旧版本!)
+    [switch]$Force,          # 强制用 d:\华容道\华容道 的源码覆盖打包目录 (危险: 那个目录是旧版本!)
     [switch]$PullSource,     # 源文件比打包目录旧时也覆盖 (默认只在打包目录**缺失**该文件时才复制)
     [switch]$SkipStartTest   # 跳过启动测试
 )
 
 $ErrorActionPreference = "Stop"
-$projDir = "d:\XIYueの奇妙冒险\华容道_打包"
-$srcDir = "d:\XIYueの奇妙冒险\华容道"
-$venvPython = "d:\XIYueの奇妙冒险\华容道\.venv\Scripts\python.exe"
+$projDir = "d:\华容道\华容道_打包"
+$srcDir = "d:\华容道\华容道"
+$venvPython = "d:\华容道\华容道\.venv\Scripts\python.exe"
 $specFile = Join-Path $projDir "打包exe.spec"   # 自带 spec, 不再依赖源码目录
 $internalPath = Join-Path $projDir "dist\华容道\_internal"
 

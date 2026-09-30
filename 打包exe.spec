@@ -2,8 +2,8 @@
 """华容道 发布版打包配置 (PyInstaller)
 
 使用:
-    在 D:\\XIYueの奇妙冒险\\华容道_打包 下运行  打包exe.ps1
-    或手动:  D:\\XIYueの奇妙冒险\\华容道\\.venv\\Scripts\\python.exe -m PyInstaller 打包exe.spec ^
+    在 D:\\华容道\\华容道_打包 下运行  打包exe.ps1
+    或手动:  D:\\华容道\\华容道\\.venv\\Scripts\\python.exe -m PyInstaller 打包exe.spec ^
                  --distpath dist --workpath build
 
 设计说明 (2026-09 修订):

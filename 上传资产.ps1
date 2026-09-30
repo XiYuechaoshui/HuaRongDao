@@ -17,7 +17,7 @@ param(
     [string]$Owner   = 'XiYuechaoshui',
     [string]$Repo    = 'HuaRongDao',
     [string]$Tag     = 'v1.0.0',
-    [string]$ZipPath = 'D:\XIYueの奇妙冒险\HuaRongDao-v1.0.0-win64.zip',
+    [string]$ZipPath = 'D:\华容道\HuaRongDao-v1.0.0-win64.zip',
     [int]$Retry      = 5
 )
 
